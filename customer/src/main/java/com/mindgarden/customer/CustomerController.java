@@ -1,4 +1,4 @@
-package com.mindgarden;
+package com.mindgarden.customer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("api/v1/customers")
+@RequestMapping({"api/v1/customers", "api/v1/login"})
 public record CustomerController(CustomerService customerService)
 {
 
@@ -18,5 +18,8 @@ public record CustomerController(CustomerService customerService)
   {
     log.info("new customer registration {}", customerRegistrationRequest);
     customerService.registerCustomer(customerRegistrationRequest);
+  }
+  public void loginCustomer(@RequestBody CustomerLoginRequest customerLoginRequest){
+    customerService.loginCustomer(customerLoginRequest);
   }
 }
