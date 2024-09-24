@@ -1,6 +1,11 @@
-package com.mindgarden;
+package com.mindgarden.customer;
 
-public class CustomerService
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+@Slf4j
+@Service
+public record CustomerService(CustomerRepository customerRepository)
 {
 
   public void registerCustomer(CustomerRegistrationRequest request)
@@ -13,6 +18,13 @@ public class CustomerService
 
     //todo: check if email is valid
     //todo: check if email is not taken
-    //todo: store customer in db
+    //todo: check if customer is fraudster
+    customerRepository.save(customer);
+    //todo: send notification
+  }
+
+  public void loginCustomer(final CustomerLoginRequest customerLoginRequest)
+  {
+    log.info("do Login");
   }
 }

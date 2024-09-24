@@ -1,13 +1,13 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   application:
-    name: customers
+    name: fraud
   datasource:
-    url: jdbc:postgresql://localhost:5432/customers
     username: 'mindgarden'
     password: 'password'
+    url: jdbc:postgresql://localhost:5432/fraud
   jpa:
     properties:
       hibernate:
@@ -16,5 +16,3 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: 'true'
-zipkin:
-  base-url

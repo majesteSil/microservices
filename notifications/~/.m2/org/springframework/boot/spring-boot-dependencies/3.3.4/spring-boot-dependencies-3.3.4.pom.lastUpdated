@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Sep 24 23:15:44 CEST 2024
+@default-nexus-mirror-https\://repo.govkg.de/repository/maven-public/.lastUpdated=1727212544146
+https\://repo.govkg.de/repository/maven-public/.error=Could not transfer artifact org.springframework.boot\:spring-boot-dependencies\:pom\:3.3.4 from/to nexus-mirror (https\://repo.govkg.de/repository/maven-public/)\: repo.govkg.de\: Der Name oder der Dienst ist nicht bekannt

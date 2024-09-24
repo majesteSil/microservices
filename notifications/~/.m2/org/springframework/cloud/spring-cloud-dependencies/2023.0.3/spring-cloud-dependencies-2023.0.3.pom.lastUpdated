@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Sep 24 22:43:40 CEST 2024
+@default-nexus-mirror-https\://repo.govkg.de/repository/maven-public/.lastUpdated=1727210620284
+https\://repo.govkg.de/repository/maven-public/.error=Could not transfer artifact org.springframework.cloud\:spring-cloud-dependencies\:pom\:2023.0.3 from/to nexus-mirror (https\://repo.govkg.de/repository/maven-public/)\: repo.govkg.de
