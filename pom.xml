@@ -23,7 +23,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.boot.maven.pluign.version>3.3.1</spring.boot.maven.pluign.version>
     <spring.boot.version>3.3.4</spring.boot.version>
-    <spring-cloud.version>2023.0.2</spring-cloud.version>
+    <spring.cloud.version>2023.0.2</spring.cloud.version>
+    <junit.version>4.12</junit.version>
   </properties>
 
   <dependencyManagement>
@@ -34,6 +35,13 @@
         <version>${spring.boot.version}</version>
         <scope>import</scope>
         <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring.cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -46,6 +54,12 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
