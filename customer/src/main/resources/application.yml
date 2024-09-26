@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: customers
+  kafka:
+    bootstrap-servers: localhost:9090
   datasource:
     url: jdbc:postgresql://localhost:5432/customers
     username: 'mindgarden'
