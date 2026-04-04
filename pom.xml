@@ -1,63 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.mindgarden</groupId>
-  <artifactId>mindgardenservices</artifactId>
-  <version>1.0</version>
-  <packaging>pom</packaging>
+    <groupId>com.mindgarden</groupId>
+    <artifactId>mindgardenservices</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <licenses>
+        <license/>
+    </licenses>
+    <developers>
+        <developer>
+            <roles>
+                <role>Main Developer</role>
+            </roles>
+            <name>Majeste Silatsa</name>
+            <email>majestesilatsa@majeste-dev.com</email>
+        </developer>
+    </developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
+    <name>mindgardenservices</name>
 
-  <name>mindgardenservices</name>
-  <!-- FIXME change it to the project's website -->
-  <url>https://www.mindgarden.com</url>
-  <modules>
-    <module>customer</module>
-      <module>fraud</module>
-    <module>notifications</module>
-    <module>discovery-server</module>
-  </modules>
+    <url>https://www.mindgarden.com</url>
+    <modules>
+        <module>config-server</module>
+        <module>discovery-server</module>
+        <module>customer</module>
+        <module>fraud</module>
+        <module>notifications</module>
+        <module>order</module>
+        <module>frontend</module>
+        <module>api-gateway</module>
+    </modules>
 
-  <properties>
-    <maven.compiler.release>17</maven.compiler.release>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.boot.maven.pluign.version>3.3.1</spring.boot.maven.pluign.version>
-    <spring.boot.version>3.3.4</spring.boot.version>
-    <spring-cloud.version>2023.0.2</spring-cloud.version>
-  </properties>
-
-  <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring.boot.version}</version>
-        <scope>import</scope>
-        <type>pom</type>
-      </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <!-- Test-Dependencies-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--    Testcontainers BOM - verwaltet versionen zentral-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-testcontainers</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-  </dependencyManagement>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-    </dependency>
-  </dependencies>
+    <properties>
+        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.parameters>true</maven.compiler.parameters>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.boot.maven.pluign.version>3.3.1</spring.boot.maven.pluign.version>
+        <dependency-check-maven>10.0.4</dependency-check-maven>
+        <spring.boot.version>3.5.13</spring.boot.version>
+        <spring-cloud.version>2025.0.2</spring-cloud.version>
+    </properties>
 
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-          <version>${spring.boot.maven.pluign.version}</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring.boot.maven.pluign.version}</version>
+                </plugin>
+                <!-- OWASP Dependency-Check Plugin -->
+                <plugin>
+                    <groupId>org.owasp</groupId>
+                    <artifactId>dependency-check-maven</artifactId>
+                    <version>${dependency-check-maven}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
