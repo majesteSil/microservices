@@ -31,11 +31,12 @@
     <modules>
         <module>config-server</module>
         <module>discovery-server</module>
+        <module>shared</module>
         <module>customer</module>
         <module>fraud</module>
-        <module>notifications</module>
         <module>order</module>
         <module>frontend</module>
+        <module>notifications</module>
         <module>api-gateway</module>
     </modules>
 

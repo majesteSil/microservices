@@ -1,5 +1,6 @@
 package com.mindgarden.customer.service;
 
+import com.mindgarden.customer.client.FraudClient;
 import com.mindgarden.customer.dto.AddressRequest;
 import com.mindgarden.customer.dto.AddressResponse;
 import com.mindgarden.customer.dto.CreateCustomerRequest;
@@ -12,9 +13,13 @@ import com.mindgarden.customer.exception.CustomerAlreadyActiveException;
 import com.mindgarden.customer.exception.CustomerAlreadyBlockedException;
 import com.mindgarden.customer.exception.CustomerAlreadyExistsException;
 import com.mindgarden.customer.exception.CustomerAlreadyInactiveException;
+import com.mindgarden.customer.exception.CustomerFraudException;
 import com.mindgarden.customer.exception.CustomerNotFoundException;
 import com.mindgarden.customer.exception.EmailAlreadyExistsException;
 import com.mindgarden.customer.repository.CustomerRepository;
+import com.mindgarden.shared.dto.FraudCheckRequest;
+import com.mindgarden.shared.dto.FraudCheckResponse;
+import com.mindgarden.shared.entity.FraudStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -29,6 +34,7 @@ import java.util.UUID;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
+    private final FraudClient fraudClient;
 
     @Transactional
     public CustomerResponse createCustomer(CreateCustomerRequest request) {
@@ -39,6 +45,12 @@ public class CustomerService {
 
         Customer customer = toEntity(request);
         Customer saved = customerRepository.save(customer);
+
+        FraudCheckResponse fraudResponse = fraudClient.checkFraud(new FraudCheckRequest(saved.getId()));
+
+        if(fraudResponse.fraudStatus() == FraudStatus.REJECTED){
+            throw new CustomerFraudException(saved.getId());
+        }
 
         log.info("Customer created: id={}, email={}", saved.getId(), saved.getEmail());
 

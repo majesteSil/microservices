@@ -3,8 +3,9 @@
 -- Datenbank erstellen
 CREATE
 DATABASE customers;
+CREATE
+DATABASE fraud;
 
--- CREATE DATABASE orders;
 -- CREATE DATABASE products;
 -- CREATE DATABASE notifications;
 
@@ -12,8 +13,9 @@ DATABASE customers;
 GRANT ALL PRIVILEGES ON DATABASE
 customers TO mindgarden;
 
--- GRANT ALL PRIVILEGES ON DATABASE
--- orders TO mindgarden;
+GRANT ALL PRIVILEGES ON DATABASE
+fraud TO mindgarden;
+
 -- GRANT ALL PRIVILEGES ON DATABASE
 -- payments TO mindgarden;
 -- GRANT ALL PRIVILEGES ON DATABASE

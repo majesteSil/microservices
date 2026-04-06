@@ -79,6 +79,17 @@ public class GlobalExceptionHandler {
     }
 
     // -------------------------------------------------------
+    // 403 Forbidden – Zugriff verweigert / Business-Regel verletzt
+    // -------------------------------------------------------
+
+    @ExceptionHandler(CustomerFraudException.class)
+    public ProblemDetail handleCustomerFraud(CustomerFraudException ex) {
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.FORBIDDEN, ex.getMessage());
+        problem.setTitle("Customer is a Fraudster");
+        return problem;
+    }
+
+    // -------------------------------------------------------
     // 400 Bad Request – Validierungsfehler
     // -------------------------------------------------------
 
