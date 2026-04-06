@@ -1,26 +1,5 @@
-server:
-  port: 8080
-
 spring:
+  config:
+    import: configserver:http://localhost:8888
   application:
-    name: customers
-  kafka:
-    bootstrap-servers: localhost:9090
-  datasource:
-    url: jdbc:postgresql://localhost:5432/customers
-    username: 'mindgarden'
-    password: 'password'
-  jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: 'true'
-    hibernate:
-      ddl-auto: update
-    show-sql: 'true'
-zipkin:
-  base-url
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+    name: customer-service
